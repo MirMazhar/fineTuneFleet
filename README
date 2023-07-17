@@ -1,0 +1,38 @@
+1) you must have python and node js in your system
+python: https://www.python.org/downloads/release/python-3114/
+node js: https://nodejs.org/en/download/current
+
+2) put your api key in api.js file, I have used the free one.
+
+3) run npm i before running the code
+
+4) remember you downloaded the python just run this command in command prompt
+    pip install --upgrade openai openai"[datalib]"
+
+5) i have stored your data in data.jsonl file in jsonl format ( that open ai accepts)
+
+6) now open the terminal in root folder and run this
+    openai tools fine_tunes.prepare_data -f ./data.jsonl
+
+7) this will fine tune your data and create a new file data_prepared.jsonl, you can try this by deleting the current data_prepared.jsonl file.
+
+8) if you have any changes in data change data.jsonl file
+
+9) when data is ready run this command
+    node uploadFile.js
+
+10) it will upload data.jsonl and provide you the file id, store that file id somewhere
+
+11) now goto createFineTune.js file and replace the file id there.
+
+12) you can check your request of fine tuning by running this command
+        node listFineTunes.js
+
+13) once the output says succeeded run this command to check either modal has trained or not
+        node createCompletion.js
+
+NOTES: 
+1) make your data more expressable for example instead of saying "Do you offer free shipping?" you can write 
+"Do "FLEET OR WHATEVER YOUR NAME IS" offer free shipping?" so the gpt knows it taking about you.
+
+2) make sure to enter more data to get more fine results according to open ai it self you can use 500 lines of data to get good results.
